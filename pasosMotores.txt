@@ -1,0 +1,29 @@
+1.
+(si ya se había probado con anterioridad): sudo ip link set can0 down
+sudo ip link set can0 type can bitrate 125000 sjw 4 berr-reporting on fd off && sudo ip link set can0 up
+rosrun vanttec_can_bus_comms vanttec_can_bus_comms_node
+
+2. (esperar a que salgan los mensajes de bienvenida del comms_node)
+rostopic pub /motors std_msgs/Float32MultiArray "{data:[0,0,0,0,0,0,0,0]}"
+rostopic pub /motors std_msgs/Float32MultiArray "{data:[0.1,0.1,0,0,0,0,0,0]}"
+rostopic pub /motors std_msgs/Float32MultiArray "{data:[0.2,0.2,0,0,0,0,0,0]}"
+rostopic pub /motors std_msgs/Float32MultiArray "{data:[0.5,0.5,0,0,0,0,0,0]}"
+rostopic pub /motors std_msgs/Float32MultiArray "{data:[0.8,0.8,0,0,0,0,0,0]}"
+
+
+
+=====================
+|||  ACTUALIZADO  |||
+=====================
+
+EN vanttec_can_bus_comms:
+
+sudo ./init.sh
+roslaunch vanttec_can_bus_comms vanttec_can_bus_comms.launch 
+
+/motors/left_thrust y right_thrust tienen un rango de [-30, 36.5]
+
+rostopic pub /motors/left_thrust std_msgs/Float32 "data: 0.0" 
+rostopic pub /motors/left_thrust std_msgs/Float32 "data: 20.0" 
+rostopic pub /motors/right_thrust std_msgs/Float32 "data: 0.0" 
+rostopic pub /motors/right_thrust std_msgs/Float32 "data: 20.0"

@@ -1,0 +1,8 @@
+prefix=/Users/saucesaft/Documents/Code/vanttec/percepcion/yolo_color_detection_algorithm/install
+
+Name: detection_msgs
+Description: Description of detection_msgs
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: std_msgs message_runtime

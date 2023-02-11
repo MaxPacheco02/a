@@ -1,0 +1,8 @@
+prefix=/Users/saucesaft/Documents/Code/vanttec/percepcion/yolo_color_detection_algorithm/install
+
+Name: filtros
+Description: Description of filtros
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

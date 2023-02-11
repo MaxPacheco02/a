@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<arg name="xcoord" default="0"/>
+<arg name="ycoord" default="0"/>
+<arg name="y_space" default="2.5"/>
+<arg name="x_space" default="3"/>
+
+    <!-- Gate #1 -->
+    <group ns="sGateRed1">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_1" />
+                <arg name="x" value="$(eval x_space*1 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 0 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen1">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_1" />
+                <arg name="x" value="$(eval x_space*1 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 0 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #2 -->
+    <group ns="sGateRed2">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_2" />
+                <arg name="x" value="$(eval x_space*2 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 - 1 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen2">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_2" />
+                <arg name="x" value="$(eval x_space*2 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 - 1 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #3 -->
+    <group ns="sGateRed3">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_3" />
+                <arg name="x" value="$(eval x_space*3 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 - 2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen3">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_3" />
+                <arg name="x" value="$(eval x_space*3 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 - 2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #4 -->
+    <group ns="sGateRed4">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_4" />
+                <arg name="x" value="$(eval x_space*4 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 - 1 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen4">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_4" />
+                <arg name="x" value="$(eval x_space*4 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 - 1 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #5 -->
+    <group ns="sGateRed5">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_5" />
+                <arg name="x" value="$(eval x_space*5 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 0.2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen5">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_5" />
+                <arg name="x" value="$(eval x_space*5 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 0.2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #6 -->
+    <group ns="sGateRed6">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_6" />
+                <arg name="x" value="$(eval x_space*6 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 1.2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen6">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_6" />
+                <arg name="x" value="$(eval x_space*6 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 1.2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #7 -->
+    <group ns="sGateRed7">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_7" />
+                <arg name="x" value="$(eval x_space*7 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 1 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen7">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_7" />
+                <arg name="x" value="$(eval x_space*7 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 1 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #8 -->
+    <group ns="sGateRed8">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_8" />
+                <arg name="x" value="$(eval x_space*8 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 0.6 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen8">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_8" />
+                <arg name="x" value="$(eval x_space*8 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 0.6 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #9 -->
+    <group ns="sGateRed9">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_9" />
+                <arg name="x" value="$(eval x_space*9 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 0.2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen9">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_9" />
+                <arg name="x" value="$(eval x_space*9 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 0.2 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+
+    <!-- Gate #10 -->
+    <group ns="sGateRed10">
+        <include file="$(find uv_worlds)/launch/test_spawn_reda2.launch">
+                <arg name="robot_name" value="Red_A2_10" />
+                <arg name="x" value="$(eval x_space*10 + arg('xcoord'))" />
+                <arg name="y" value="$(eval y_space/2 + 0 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="red" />
+        </include>
+    </group>
+     <group ns="sGateGreen10">
+        <include file="$(find uv_worlds)/launch/test_spawn_greena2.launch">
+                <arg name="robot_name" value="Green_A2_10" />
+                <arg name="x" value="$(eval x_space*10 + arg('xcoord'))" />
+                <arg name="y" value="$(eval -y_space/2 + 0 + arg('ycoord'))" />
+                <arg name="z" value="0.08" />
+                <arg name="roll" value="0" />
+                <arg name="pitch" value="0" />
+                <arg name="yaw" value="0" />
+                <arg name="color" value="green" />
+        </include>
+    </group>
+</launch>
