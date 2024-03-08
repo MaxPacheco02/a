@@ -1,7 +1,0 @@
-
-1. colores zed
-2. obstacle channel
-4. navegación entre retos
-5. electrónica del barco
-
-actualizar jetson ylvylvylv

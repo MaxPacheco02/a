@@ -1,2 +1,0 @@
-detection_msgs:filtros:video_publish:yolov5_ros
--DCATKIN_DEVEL_PREFIX=/Users/saucesaft/Documents/Code/vanttec/percepcion/yolo_color_detection_algorithm/devel -DCMAKE_INSTALL_PREFIX=/Users/saucesaft/Documents/Code/vanttec/percepcion/yolo_color_detection_algorithm/install -G Unix Makefiles

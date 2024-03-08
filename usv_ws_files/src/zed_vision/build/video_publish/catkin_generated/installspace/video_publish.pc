@@ -1,8 +1,0 @@
-prefix=/Users/saucesaft/Documents/Code/vanttec/percepcion/yolo_color_detection_algorithm/install
-
-Name: video_publish
-Description: Description of video_publish
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,0 +1,6 @@
+cat /proc/tty/drivers
+lsmod | grep usbserial
+sudo modprobe -r ftdi_sio  # or pl2303
+sudo modprobe -r usbserial
+sudo modprobe ftdi_sio 
+

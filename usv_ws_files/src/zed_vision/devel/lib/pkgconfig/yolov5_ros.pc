@@ -1,8 +1,0 @@
-prefix=/Users/saucesaft/Documents/Code/vanttec/percepcion/yolo_color_detection_algorithm/devel
-
-Name: yolov5_ros
-Description: Description of yolov5_ros
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

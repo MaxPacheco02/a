@@ -1,1 +1,0 @@
-/home/max/xbee_ws/devel/.private/catkin_tools_prebuild/setup.bash

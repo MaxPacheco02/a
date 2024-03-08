@@ -1,0 +1,5 @@
+sudo apt-get install libgz-sim7-dev 
+sudo apt install libignition-transport12-dev 
+sudo apt install libignition-msgs9-dev 
+sudo apt install python3-sdformat13
+
