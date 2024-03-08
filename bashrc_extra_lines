@@ -1,0 +1,16 @@
+source /opt/ros/humble/setup.bash
+
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash 
+
+# source ~/usv/install/setup.bash 
+# source ~/vrx_ws/install/setup.bash
+source ~/sdv/install/setup.bash
+source ~/gz/install/setup.bash
+source ~/ros2/install/setup.bash
+source ~/sexto_sem/install/setup.bash
+
+export GZ_SIM_RESOURCE_PATH=:~/usv/src/vanttec_usv/src/usv_description/models:$GZ_SIM_RESOURCE_PATH
+export GZ_VERSION=garden
+
+alias tok="xclip -selection c < ~/token.txt"
+alias she="make sdv.shell"
