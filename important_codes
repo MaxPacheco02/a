@@ -2,5 +2,11 @@ ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
 
 Publicar un Pose2D msg
 ros2 topic pub /usv/waypoint geometry_msgs/msg/Pose2D "{x: 2, y: 1, theta: 0}"
+
+Publicar un custom Waypoint List
+ros2 topic pub --once /goals usv_interfaces/msg/WaypointList "{waypoint_list: [{x: 3, y: 2}, {x: 2, y: 8}, {x: 6, y: 1}, {x: 7, y: 3}, {x: 3, y: 8}]}"
+
+ros2 topic pub --once /goals usv_interfaces/msg/WaypointList "{waypoint_list: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 6, y: 1}, {x: 7, y: -3}, {x: 3, y: -8}]}"
+
 ssh-copy-id vanttec@192.168.1.100
 rosdep install --from-paths src -y --ignore-src
