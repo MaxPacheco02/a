@@ -1,12 +1,18 @@
-ros2 launch foxglove_bridge foxglove_bridge_launch.xml port:=8765
+# Correr el foxglove bridge
+ros2 run foxglove_bridge foxglove_bridge
 
-Publicar un Pose2D msg
+# Publicar un mensaje Pose2D
 ros2 topic pub /usv/waypoint geometry_msgs/msg/Pose2D "{x: 2, y: 1, theta: 0}"
 
-Publicar un custom Waypoint List
+# Publicar un mensaje 'complejo' por terminal (Waypoint List del USV)
 ros2 topic pub --once /goals usv_interfaces/msg/WaypointList "{waypoint_list: [{x: 3, y: 2}, {x: 2, y: 8}, {x: 6, y: 1}, {x: 7, y: 3}, {x: 3, y: 8}]}"
-
 ros2 topic pub --once /goals usv_interfaces/msg/WaypointList "{waypoint_list: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 6, y: 1}, {x: 7, y: -3}, {x: 3, y: -8}]}"
 
+# Copiar llave de ssh para que no pida contrasena
 ssh-copy-id vanttec@192.168.1.100
 rosdep install --from-paths src -y --ignore-src
+
+# Convertir un video de webm a mp4
+ffmpeg -i input_video.webm \
+ -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 \
+ -y -an output_video.mp4 
