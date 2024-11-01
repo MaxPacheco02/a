@@ -9,7 +9,9 @@ ros2 topic pub --once /goals usv_interfaces/msg/WaypointList "{waypoint_list: [{
 ros2 topic pub --once /goals usv_interfaces/msg/WaypointList "{waypoint_list: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 6, y: 1}, {x: 7, y: -3}, {x: 3, y: -8}]}"
 
 # Copiar llave de ssh para que no pida contrasena
-ssh-copy-id vanttec@192.168.1.100
+ssh-keygen # Generar keys (solo la primera vez)
+# Por micro-usb
+ssh-copy-id vanttec@192.168.55.1 
 
 # Instalar dependencias de paquetes de ROS desde el ws
 rosdep install --from-paths src -y --ignore-src
@@ -22,5 +24,25 @@ ffmpeg -i input_video.webm \
  # Cuando se cierra un disco mal y ya no te deja volver a entrar
  sudo ntfsfix /dev/sdb1 # reemplazar sdb1 por el disco que esta mal
 
-# SSH a la Jetson TX2 del USV
+# SSH a la Jetson TX2 del USV por ethernet
 ssh vanttec@192.168.55.1
+
+# SSH por zero tier
+ssh vanttec@10.147.20.160
+
+# Docker borrar todo
+docker rm -vf $(docker ps -aq)
+docker rmi -f $(docker images -aq)
+
+# Git submodule init and update recursively
+git submodule update --init --recursive
+
+# Ubuntu read available space
+df -h
+
+# Deshabilitar desktop en jetson
+sudo systemctl set-default multi-user.target     # disable desktop on boot
+sudo systemctl set-default graphical.target      # enable desktop on boot
+
+# Reset git commit
+git reset --soft HEAD~1
