@@ -28,7 +28,7 @@ ffmpeg -i input_video.webm \
 ssh vanttec@192.168.55.1
 
 # SSH por zero tier
-ssh vanttec@10.147.20.160
+ssh vanttec@10.147.20.53
 
 # Docker borrar todo
 docker rm -vf $(docker ps -aq)
