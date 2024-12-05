@@ -46,3 +46,6 @@ sudo systemctl set-default graphical.target      # enable desktop on boot
 
 # Reset git commit
 git reset --soft HEAD~1
+
+# Activate wifi from terminal 
+sudo  nmcli r wifi on
