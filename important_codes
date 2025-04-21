@@ -20,6 +20,10 @@ rosdep install --from-paths src -y --ignore-src
 ffmpeg -i input_video.webm \
  -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 \
  -y -an output_video.mp4 
+
+# Convertir de video a frames (30 fps)
+ ffmpeg -i input_video -r 30 $img%03d.jpg
+
  
  # Cuando se cierra un disco mal y ya no te deja volver a entrar
  sudo ntfsfix /dev/sdb1 # reemplazar sdb1 por el disco que esta mal
