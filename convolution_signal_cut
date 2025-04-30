@@ -1,0 +1,23 @@
+me falt[o mas que no alcanc[e a escribir
+
+energy_threshold = 0.03 * max(energy);
+
+voice_flags = (zcr > acr_thershold) & (energy > energy_thershold);
+
+first_ovice_frame = find(voice_flags, 1, 'first');
+last_voice_frame = find(voice_flags, 1, 'last');
+
+if isempty(first_voice_frame) || isempty(last_voice_frame)
+  disp('No se detect[o voz');
+  return;
+end
+
+start_sample = (first_voice_frame - 1)*hop_length + 1;
+end_sample = (last_voice_frame - 1) * hop_length + frame_length;
+
+end_sample = min(end_sample, length(signal));
+
+signal_trimmend = signal(start_sample:end_sample);
+
+sound(signal_trimmend, fs);
+audiowrite('voz_recortada.wav', signal_trimmend, fs);
