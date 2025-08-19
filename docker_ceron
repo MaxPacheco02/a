@@ -87,3 +87,9 @@ http://localhost:8042/restgatewaydemo/getmultcoords
 # Correr en FLASK-REST-Call-Linux el archivo de python 
 conda activate te300xb
 python app.py
+
+message ImageResult {
+	bytes b64img = 1;
+	uint32 width = 2;
+	uint32 height = 3;
+}
