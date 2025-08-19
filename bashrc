@@ -136,15 +136,18 @@ conda deactivate
 source /opt/ros/humble/setup.bash
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
-source ~/vanttec_usv/install/setup.bash
+# source ~/vanttec_usv/install/setup.bash
 # source ~/irs/install/setup.bash
 # source ~/vanttec_sdv/workspace/install/setup.bash
 # source ~/vrx_ws/install/setup.bash
 # source ~/sdv/install/setup.bash
 # source ~/gz/install/setup.bash
-source ~/ros2_ws/install/setup.bash
+# source ~/ros2_ws/install/setup.bash
+# source ~/ros_gz_ws/install/setup.bash
+# source ~/TurboPlusPlus_IntegracionRobotica/install/setup.bash
 
 export GZ_SIM_RESOURCE_PATH=:~/vanttec_usv/src/usv_description/models:$GZ_SIM_RESOURCE_PATH
+export GZ_SIM_RESOURCE_PATH=:~/TurboPlusPlus_IntegracionRobotica/src/pzb_description/models:$GZ_SIM_RESOURCE_PATH
 export GZ_VERSION=garden
 
 alias tok="xclip -selection c < ~/.token"
@@ -162,6 +165,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+alias ssh_pi="ssh pi@10.147.20.228"
+
 alias ssh_eth="ssh vanttec@192.168.55.1"
 alias ssh_zerotier="ssh vanttec@10.147.20.16"
 alias ssh_wifi="ssh vanttec@10.42.0.77"
@@ -172,15 +177,114 @@ alias ssh_ppp="ssh vanttec@10.0.0.1"
 alias wifi="nmcli radio wifi"
 
 alias init_tmux=". ~/tmux_session.sh"
-# export ROS_DOMAIN_ID=1
-export ROS_DOMAIN_ID=2
+# export ROS_DOMAIN_ID=0
+# export ROS_DOMAIN_ID=2
+# export ROS_DOMAIN_ID=2
 
-alias ssh_max="ssh vanttec@10.147.20.16"
+alias ssh_orin="ssh -X max@192.168.55.1"
 alias ssh_ameniti="ssh vanttec@172.24.91.70"
 alias ssh_village="ssh vanttec@192.168.202.188"
 
+alias ssh_pzb="ssh puzzlebot@10.42.0.2"
+alias ssh_pzb_wifi="ssh puzzlebot@10.22.149.32"
+alias ssh_pzb_hotspot="ssh puzzlebot@10.42.0.201"
 heic2png() {
   local file="$1"
   heif-convert "$file" "${file/%.heic/.png}"
 }
 
+webm2mp4(){
+  local file="$1"
+  
+  ffmpeg -i "$file" \
+ -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 \
+ -y -an "${file/%.webm/.mp4}"
+}
+
+mp42gif(){
+  local file="$1"
+  
+  ffmpeg -i "$file" \
+ -pix_fmt rgb24 \
+ "${file/%.mp4/.gif}"
+}
+
+webm2gif(){
+  local file="$1"
+  
+  ffmpeg -i "$file" \
+ -pix_fmt rgb24 \
+ "${file/%.webm/.gif}"
+}
+
+video_speedup_by() {
+  local file="$1"
+  local times="$2"
+
+  # Extract file base name and extension
+  local filename="${file%.*}"
+  local extension="${file##*.}"
+
+  # Construct output filename
+  local output="${filename}_x${times}.${extension}"
+
+  ffmpeg -i "$file" -filter:v "setpts=PTS/${times}" -an "$output"
+}
+
+export PATH="/usr/local/cuda-12.8/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-12.8/lib64:$LD_LIBRARY_PATH"
+
+nvcc_build_run() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: compile_and_run <output_name> <cu_file_path>"
+        return 1
+    fi
+
+    local output=$1
+    local cu_file=$2
+
+    nvcc -arch=sm_89 -o "$output" "$cu_file" -run
+}
+
+alias colcon_cuda="colcon build --cmake-args -DCUDA_ARCH=89"
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# ensure the model and world files are found
+export GZ_SIM_RESOURCE_PATH=\
+$GZ_SIM_RESOURCE_PATH:\
+$HOME/ros2_ws/src/asv_wave_sim/gz-waves-models/models:\
+$HOME/ros2_ws/src/asv_wave_sim/gz-waves-models/world_models:\
+$HOME/ros2_ws/src/asv_wave_sim/gz-waves-models/worlds
+
+# ensure the system plugins are found
+export GZ_SIM_SYSTEM_PLUGIN_PATH=\
+$GZ_SIM_SYSTEM_PLUGIN_PATH:\
+$HOME/ros2_ws/install/lib
+
+# ensure the gui plugin is found
+export GZ_GUI_PLUGIN_PATH=\
+$GZ_GUI_PLUGIN_PATH:\
+$HOME/ros2_ws/src/asv_wave_sim/gz-waves/src/gui/plugins/waves_control/build
+
+# rm -rf ~/.config/Code/*
+# rm -rf /home/max/.cache/vscode-cpptools
+
+add_suffix() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: add_suffix file1 [file2 ...] suffix"
+    return 1
+  fi
+
+  suffix="${@: -1}"           # Last argument is the suffix
+  files=("${@:1:$#-1}")        # All arguments except the last
+
+  for file in "${files[@]}"; do
+    [[ -e "$file" ]] || continue  # Skip non-existent files
+    ext="${file##*.}"
+    base="${file%.*}"
+    mv -- "$file" "${base}${suffix}.${ext}"
+  done
+}
+
+alias fpga_scan="sudo  ~/Downloads/Gowin_V1.9.9_linux/Programmer/bin/programmer_cli --scan"
+alias vol_percentage="pactl set-sink-volume @DEFAULT_SINK@"
