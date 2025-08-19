@@ -1,0 +1,17 @@
+- instalar drivers de nvidia
+- instalar CUDA
+- instalar omniverse (isaac sim)
+
+- instalar tensorrt 10.9.0.34-1+cuda12.8
+
+- copiar dotfiles del repo a/
+
+4. instalar ros2 humble
+
+5. instalar nerfstudio
+
+en ros2_ws/src, instalar paquetes:
+
+rosshow
+urdf_tutorial
+
