@@ -116,6 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/max/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -132,62 +133,50 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # Extra lines
-conda deactivate
+# conda deactivate
 source /opt/ros/humble/setup.bash
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
 
-# source ~/vanttec_usv/install/setup.bash
+source ~/vanttec_usv/install/setup.bash
 # source ~/irs/install/setup.bash
 # source ~/vanttec_sdv/workspace/install/setup.bash
 # source ~/vrx_ws/install/setup.bash
 # source ~/sdv/install/setup.bash
 # source ~/gz/install/setup.bash
-# source ~/ros2_ws/install/setup.bash
+source ~/ros2_ws/install/setup.bash
 # source ~/ros_gz_ws/install/setup.bash
 # source ~/TurboPlusPlus_IntegracionRobotica/install/setup.bash
+source ~/gz_ws/install/setup.bash
+
 
 export GZ_SIM_RESOURCE_PATH=:~/vanttec_usv/src/usv_description/models:$GZ_SIM_RESOURCE_PATH
-export GZ_SIM_RESOURCE_PATH=:~/TurboPlusPlus_IntegracionRobotica/src/pzb_description/models:$GZ_SIM_RESOURCE_PATH
-export GZ_VERSION=garden
+# export GZ_SIM_RESOURCE_PATH=:~/TurboPlusPlus_IntegracionRobotica/src/pzb_description/models:$GZ_SIM_RESOURCE_PATH
+export GZ_VERSION=harmonic
 
 alias tok="xclip -selection c < ~/.token"
+alias totp_tec="oathtool --totp -b $(cat ~/.tec_totpsecret) | xclip -selection c"
+alias totp_git="oathtool --totp -b $(cat ~/.git_totpsecret) | xclip -selection c"
 alias init_can="~/a/start-can0.sh"
 alias init_lidar_usv="~/a/lidar_conf_usv.sh"
-alias co="colcon build --symlink-install --cmake-args=-DCMAKE_BUILD_TYPE=Release --parallel-workers $(nproc)"
+alias co="colcon build --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 alias trtexec="/usr/src/tensorrt/bin/trtexec"
 
 # For building a TensorRT cpp project
 export TRT_LIBPATH=/usr/src/tensorrt
 alias trt_cpp_build="cmake -DCMAKE_CUDA_COMPILER:PATH=/usr/local/cuda/bin/nvcc .. -DTRT_LIB_DIR=$TRT_LIBPATH -DTRT_OUT_DIR=`pwd`/out"
-alias trt_cpp_make="make -j$(nproc)"
+alias make_nproc="make -j$(nproc)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias ssh_pi="ssh pi@10.147.20.228"
-
-alias ssh_eth="ssh vanttec@192.168.55.1"
-alias ssh_zerotier="ssh vanttec@10.147.20.16"
-alias ssh_wifi="ssh vanttec@10.42.0.77"
-alias ssh_modem="ssh vanttec@192.168.8.83"
-alias ssh_ppp="ssh vanttec@10.0.0.1"
-. "$HOME/.cargo/env"
-
+alias ssh_mrsl="ssh mrsl@10.147.20.90"
 alias wifi="nmcli radio wifi"
 
-alias init_tmux=". ~/tmux_session.sh"
 # export ROS_DOMAIN_ID=0
-# export ROS_DOMAIN_ID=2
-# export ROS_DOMAIN_ID=2
+export ROS_DOMAIN_ID=2
 
-alias ssh_orin="ssh -X max@192.168.55.1"
-alias ssh_ameniti="ssh vanttec@172.24.91.70"
-alias ssh_village="ssh vanttec@192.168.202.188"
-
-alias ssh_pzb="ssh puzzlebot@10.42.0.2"
-alias ssh_pzb_wifi="ssh puzzlebot@10.22.149.32"
-alias ssh_pzb_hotspot="ssh puzzlebot@10.42.0.201"
 heic2png() {
   local file="$1"
   heif-convert "$file" "${file/%.heic/.png}"
@@ -234,6 +223,9 @@ video_speedup_by() {
 export PATH="/usr/local/cuda-12.8/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-12.8/lib64:$LD_LIBRARY_PATH"
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/home/max/acados/lib"
+export ACADOS_SOURCE_DIR="/home/max/acados"
+
 nvcc_build_run() {
     if [ $# -ne 2 ]; then
         echo "Usage: compile_and_run <output_name> <cu_file_path>"
@@ -252,19 +244,19 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # ensure the model and world files are found
 export GZ_SIM_RESOURCE_PATH=\
 $GZ_SIM_RESOURCE_PATH:\
-$HOME/ros2_ws/src/asv_wave_sim/gz-waves-models/models:\
-$HOME/ros2_ws/src/asv_wave_sim/gz-waves-models/world_models:\
-$HOME/ros2_ws/src/asv_wave_sim/gz-waves-models/worlds
+$HOME/gz_ws/src/asv_wave_sim/gz-waves-models/models:\
+$HOME/gz_ws/src/asv_wave_sim/gz-waves-models/world_models:\
+$HOME/gz_ws/src/asv_wave_sim/gz-waves-models/worlds
 
 # ensure the system plugins are found
 export GZ_SIM_SYSTEM_PLUGIN_PATH=\
 $GZ_SIM_SYSTEM_PLUGIN_PATH:\
-$HOME/ros2_ws/install/lib
+$HOME/gz_ws/install/lib
 
 # ensure the gui plugin is found
 export GZ_GUI_PLUGIN_PATH=\
 $GZ_GUI_PLUGIN_PATH:\
-$HOME/ros2_ws/src/asv_wave_sim/gz-waves/src/gui/plugins/waves_control/build
+$HOME/gz_ws/src/asv_wave_sim/gz-waves/src/gui/plugins/waves_control/build
 
 # rm -rf ~/.config/Code/*
 # rm -rf /home/max/.cache/vscode-cpptools
@@ -286,5 +278,44 @@ add_suffix() {
   done
 }
 
+csv_view() {
+  local file="$1"
+  column -s, -t < $file | less -#2 -N -S
+}
+
 alias fpga_scan="sudo  ~/Downloads/Gowin_V1.9.9_linux/Programmer/bin/programmer_cli --scan"
 alias vol_percentage="pactl set-sink-volume @DEFAULT_SINK@"
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# Because apparently you can't use aliases on watch
+alias watch='watch '
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/max/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/max/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
+
+export PATH="/usr/local/texlive/2025/bin/x86_64-linux:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+colcon() {
+  if [[ "$1" == "build" ]]; then
+    command colcon build "${@:2}" --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+  else
+    command colcon "$@"
+  fi
+  if [[ "$1" == "build" ]] && compgen -G "$(pwd)/build/*/compile_commands.json" > /dev/null; then
+    jq -s 'add' "$(pwd)"/build/*/compile_commands.json > "$(pwd)/compile_commands.json"
+  fi
+}
