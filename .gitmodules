@@ -1,3 +1,9 @@
 [submodule "dotfiles/nvim"]
 	path = dotfiles/nvim
 	url = https://github.com/MaxPacheco02/nvim.git
+[submodule "dotfiles/tmux/plugins/catppuccin/tmux"]
+	path = dotfiles/tmux/plugins/catppuccin/tmux
+	url = https://github.com/catppuccin/tmux.git
+[submodule "dotfiles/tmux/plugins/tmux-yank"]
+	path = dotfiles/tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank.git
